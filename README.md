@@ -58,7 +58,8 @@ $$\hat{I}_c(x, y) = \mathop{\mathrm{clamp}}_{[0, 255]}!\left(\left\lfloor P_{\te
 ### Pillar IV: Heteroscedastic Scale-Conditioned Range Coding & Orthonormal Wavelet Cones
 
 - **Exact Boundary Truncation & Hierarchical Context Mixing (`AGM-L`):** Since $I_c(x, y) \in [0, 255]$ and $\hat{I}_c(x, y) \in [0, 255]$, impossible residual magnitudes outside $[-\hat{I}_c,\, 255 - \hat{I}_c]$ are pruned with $0$ bits. Every binary decision is conditioned on the local heteroscedastic Laplace scale $\hat{\sigma}(x, y)$ (which for $R$ and $B$ includes the exact, already-decoded error magnitude $|e_G(x, y)|$ at the same pixel $(x, y)$) and encoded by blending **Coarse + Fine Dual-Rate Probability Models** $p_{\text{mix}} = \frac{1}{2}(p_{\text{coarse}} + p_{\text{fine}})$ in a 64-bit carryless Range Coder.
-- **Block-Free $\ell_2$-Orthonormal Wavelet Cones & Guided Chroma Interpolation (`AGM-P`):** In lossy mode, AGM replaces JPEG's $8\times 8$ block DCT with a 4-level $\ell_2$-orthonormalized CDF 9/7 biorthogonal lifting wavelet across the full 2D manifold, Laplace Conditional-Expectation Centroid Reconstruction ($\mathbb{E}[w \mid q] = \operatorname{sgn}(q)(|q| + \delta_{\text{Laplace}})\Delta$), cross-scale parent-child cone context arithmetic coding, and Full-Resolution Luma-Guided Joint-Bilateral Chroma Upsampling.
+- **Block-Free $\ell_2$-Orthonormal Wavelet Cones & Guided Chroma Interpolation (`AGM-P`):** In lossy mode, AGM replaces JPEG's $8\times 8$ block DCT with a 4-level $\ell_2$-orthonormalized CDF 9/7 biorthogonal lifting wavelet across the full 2D manifold, Laplace Conditional-Expectation Centroid Reconstruction ($\mathbb{E}[w \mid q] = \mathrm{sgn}(q)(|q| + \delta_{\text{Laplace}})\Delta$
+), cross-scale parent-child cone context arithmetic coding, and Full-Resolution Luma-Guided Joint-Bilateral Chroma Upsampling.
 
 ---
 
