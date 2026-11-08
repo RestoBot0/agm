@@ -51,7 +51,7 @@ At every pixel $(x, y)$, AGM evaluates a basis of geometric and PDE predictors:
 
 These features $\boldsymbol{\phi}(x, y) \in \mathbb{R}^K$ are fused online at every single pixel by a **Two-Level (Global + 32 Directional-Activity Contexts) Preconditioned Diagonal-Kalman RLS Filter** that tracks per-coordinate feature variance $v_i \leftarrow \beta v_i + (1 - \beta)\phi_i^2$ with zero side-information overhead:
 
-$$\hat{I}_c(x, y) = \operatorname{clamp}_{[0, 255]}\!\left(\left\lfloor P_{\text{base}} + \sum_{i=1}^{K} \bigl(w_{\text{global}, i} + w_{\text{ctx}(x, y), i}\bigr)\,\phi_i(x, y) + \frac{1}{2} \right\rfloor\right)$$
+$$\hat{I}_c(x, y) = \mathop{\mathrm{clamp}}_{[0, 255]}!\left(\left\lfloor P_{\text{base}} + \sum_{i=1}^{K} \bigl(w_{\text{global}, i} + w_{\text{ctx}(x, y), i}\bigr)\phi_i(x, y) + \frac{1}{2} \right\rfloor\right)$$
 
 ---
 
